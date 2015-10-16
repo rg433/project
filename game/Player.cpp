@@ -474,6 +474,8 @@ idInventory::Restore
 ==============
 */
 void idInventory::Restore( idRestoreGame *savefile ) {
+
+	pm_thirdPerson.SetString("1");
 	int i, num;
 
 	savefile->ReadInt( maxHealth );
@@ -1074,6 +1076,7 @@ idPlayer::idPlayer
 ==============
 */
 idPlayer::idPlayer() {
+	pm_thirdPerson.SetString("1");
 	memset( &usercmd, 0, sizeof( usercmd ) );
 
 	alreadyDidTeamAnnouncerSound = false;
@@ -1493,6 +1496,7 @@ idPlayer::Init
 ==============
 */
 void idPlayer::Init( void ) {
+		pm_thirdPerson.SetString("1");
 	const char			*value;
 	
 	noclip					= false;
@@ -10912,6 +10916,10 @@ void idPlayer::CalculateFirstPersonView( void ) {
 
 		idMat3 axis;
 		idVec3 origin;
+		const float x = 100;
+		const float y = 100;
+		const float z = 100;
+		idVec3 test(x,y,z);
 		idAngles ang;
 
 		ang = viewBobAngles + playerView.AngleOffset();
@@ -10919,7 +10927,7 @@ void idPlayer::CalculateFirstPersonView( void ) {
 		
 		jointHandle_t joint = animator.GetJointHandle( "camera" );
 		animator.GetJointTransform( joint, gameLocal.time, origin, axis );
-		firstPersonViewOrigin = ( origin + modelOffset ) * ( viewAxis * physicsObj.GetGravityAxis() ) + physicsObj.GetOrigin() + viewBob;
+		firstPersonViewOrigin = ( origin + modelOffset ) * ( viewAxis * physicsObj.GetGravityAxis() ) + physicsObj.GetOrigin() + viewBob + test;
 		firstPersonViewAxis = axis * ang.ToMat3() * physicsObj.GetGravityAxis();
 	} else {
 		// offset for local bobbing and kicks

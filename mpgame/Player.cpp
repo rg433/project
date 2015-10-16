@@ -11029,8 +11029,8 @@ void idPlayer::CalculateRenderView( void ) {
 	renderView->time = gameLocal.time;
 
 	// calculate size of 3D view
-	renderView->x = 0;
-	renderView->y = 0;
+	renderView->x = 0 + 100;
+	renderView->y = 0 + 100;
 	renderView->width = SCREEN_WIDTH;
 	renderView->height = SCREEN_HEIGHT;
 	renderView->viewID = 0;
