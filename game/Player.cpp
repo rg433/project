@@ -1077,6 +1077,7 @@ idPlayer::idPlayer
 */
 idPlayer::idPlayer() {
 	pm_thirdPerson.SetString("1");
+	weight = 0;
 	memset( &usercmd, 0, sizeof( usercmd ) );
 
 	alreadyDidTeamAnnouncerSound = false;
@@ -5408,6 +5409,7 @@ void idPlayer::Reload( void ) {
  	}
 
 	weapon->Reload();
+
 }
 
 #ifdef _XENON

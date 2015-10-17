@@ -1794,6 +1794,10 @@ rvWeapon::AutoReload
 ================
 */
 bool rvWeapon::AutoReload ( void ) {
+	if(owner->getWeight() > 0){
+		owner->decWeight();
+		common->Printf("weight: %d\n", owner->getWeight());
+	}
 	assert( owner );
 
  	// on a network client, never predict reloads of other clients. wait for the server

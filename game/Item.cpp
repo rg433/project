@@ -9,6 +9,7 @@
 #include "Game_local.h"
 
 
+
 /*
 ===============================================================================
 
@@ -631,6 +632,9 @@ idItem::Pickup
 ================
 */
 bool idItem::Pickup( idPlayer *player ) {
+	if(player->getWeight() < 2){
+	player->addWeight();
+	common->Printf("weight: %d\n", player->getWeight());
 	//dropped weapon?
 	bool dropped = spawnArgs.GetBool( "dropped" );
 
@@ -752,6 +756,7 @@ bool idItem::Pickup( idPlayer *player ) {
 	StopEffect( "fx_idle" );
 
 	return true;
+	}
 }
 
 /*

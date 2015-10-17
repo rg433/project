@@ -715,6 +715,9 @@ public:
  	void					TeleportDeath( int killer );
  	void					SetLeader( bool lead );
  	bool					IsLeader( void );
+	int						getWeight(void);
+	void					addWeight(void);
+	void					decWeight(void);
 
  	void					UpdateModelSetup( bool forceReload = false );
 
@@ -944,6 +947,8 @@ private:
 	idAngles				predictionAnglesError;
 	int						predictionErrorTime;
 
+	int weight;
+
 	// mp
  	bool					ready;					// from userInfo
  	bool					respawning;				// set to true while in SpawnToPoint for telefrag checks
@@ -1157,6 +1162,10 @@ private:
  	CLASS_STATES_PROTOTYPE( idPlayer );
 };
 
+ID_INLINE int idPlayer::getWeight( void ) {
+ 	return weight;
+}
+
 ID_INLINE bool idPlayer::IsBeingTalkedTo( void ) {
 	return talkingNPC!=NULL;
 }
@@ -1175,6 +1184,13 @@ ID_INLINE bool idPlayer::IsInTeleport( void ) {
 
 ID_INLINE void idPlayer::SetLeader( bool lead ) {
 	leader = lead;
+}
+
+ID_INLINE void idPlayer::addWeight(void) {
+	weight++;
+}
+ID_INLINE void idPlayer::decWeight(void) {
+	weight--;
 }
 
 ID_INLINE bool idPlayer::IsLeader( void ) {
