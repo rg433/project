@@ -1190,7 +1190,8 @@ ID_INLINE void idPlayer::addWeight(void) {
 	weight++;
 }
 ID_INLINE void idPlayer::decWeight(void) {
-	weight--;
+	if(weight > 0)
+		weight--;
 }
 
 ID_INLINE bool idPlayer::IsLeader( void ) {
